@@ -4,8 +4,17 @@
   "version": "0.0.0",
   "author": "Fabien Huot",
   "bugs": "https://github.com/FabienHuot/dxtools/issues",
-  "dependencies": {},
-  "devDependencies": {},
+  "dependencies": {
+    "@oclif/command": "^1",
+    "@oclif/config": "^1",
+    "@oclif/errors": "^1"
+  },
+  "devDependencies": {
+    "@oclif/dev-cli": "^1",
+    "@oclif/plugin-help": "^3",
+    "@oclif/test": "^1",
+    "@oclif/config": "^1",
+  },
   "engines": {
     "node": ">=8.0.0"
   },
