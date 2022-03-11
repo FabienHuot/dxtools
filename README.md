@@ -1,21 +1,70 @@
 dxtools
 =======
 
-Tools for Salesforce Devevelopers
+
 
 [![Version](https://img.shields.io/npm/v/dxtools.svg)](https://npmjs.org/package/dxtools)
 [![CircleCI](https://circleci.com/gh/FabienHuot/dxtools/tree/master.svg?style=shield)](https://circleci.com/gh/FabienHuot/dxtools/tree/master)
 [![Appveyor CI](https://ci.appveyor.com/api/projects/status/github/FabienHuot/dxtools?branch=master&svg=true)](https://ci.appveyor.com/project/heroku/dxtools/branch/master)
-[![Codecov](https://codecov.io/gh/FabienHuot/dxtools/branch/master/graph/badge.svg)](https://codecov.io/gh/FabienHuot/dxtools)
 [![Greenkeeper](https://badges.greenkeeper.io/FabienHuot/dxtools.svg)](https://greenkeeper.io/)
 [![Known Vulnerabilities](https://snyk.io/test/github/FabienHuot/dxtools/badge.svg)](https://snyk.io/test/github/FabienHuot/dxtools)
 [![Downloads/week](https://img.shields.io/npm/dw/dxtools.svg)](https://npmjs.org/package/dxtools)
 [![License](https://img.shields.io/npm/l/dxtools.svg)](https://github.com/FabienHuot/dxtools/blob/master/package.json)
 
 <!-- toc -->
+* [Debugging your plugin](#debugging-your-plugin)
+<!-- tocstop -->
 <!-- install -->
 <!-- usage -->
+```sh-session
+$ npm install -g dxtools
+$ sfdx COMMAND
+running command...
+$ sfdx (-v|--version|version)
+dxtools/0.0.0 win32-x64 node-v16.13.1
+$ sfdx --help [COMMAND]
+USAGE
+  $ sfdx COMMAND
+...
+```
+<!-- usagestop -->
 <!-- commands -->
+* [`sfdx hello:org [-n <string>] [-f] [-v <string>] [-u <string>] [--apiversion <string>] [--json] [--loglevel trace|debug|info|warn|error|fatal|TRACE|DEBUG|INFO|WARN|ERROR|FATAL]`](#sfdx-helloorg--n-string--f--v-string--u-string---apiversion-string---json---loglevel-tracedebuginfowarnerrorfataltracedebuginfowarnerrorfatal)
+
+## `sfdx hello:org [-n <string>] [-f] [-v <string>] [-u <string>] [--apiversion <string>] [--json] [--loglevel trace|debug|info|warn|error|fatal|TRACE|DEBUG|INFO|WARN|ERROR|FATAL]`
+
+print a greeting and your org IDs
+
+```
+USAGE
+  $ sfdx hello:org [-n <string>] [-f] [-v <string>] [-u <string>] [--apiversion <string>] [--json] [--loglevel 
+  trace|debug|info|warn|error|fatal|TRACE|DEBUG|INFO|WARN|ERROR|FATAL]
+
+OPTIONS
+  -f, --force                                                                       example boolean flag
+  -n, --name=name                                                                   name to print
+
+  -u, --targetusername=targetusername                                               username or alias for the target
+                                                                                    org; overrides default target org
+
+  -v, --targetdevhubusername=targetdevhubusername                                   username or alias for the dev hub
+                                                                                    org; overrides default dev hub org
+
+  --apiversion=apiversion                                                           override the api version used for
+                                                                                    api requests made by this command
+
+  --json                                                                            format output as json
+
+  --loglevel=(trace|debug|info|warn|error|fatal|TRACE|DEBUG|INFO|WARN|ERROR|FATAL)  [default: warn] logging level for
+                                                                                    this command invocation
+
+EXAMPLES
+  sfdx hello:org --targetusername myOrg@example.com --targetdevhubusername devhub@org.com
+  sfdx hello:org --name myname --targetusername myOrg@example.com
+```
+
+_See code: [src/commands/hello/org.ts](https://github.com/FabienHuot/dxtools/blob/v0.0.0/src/commands/hello/org.ts)_
+<!-- commandsstop -->
 <!-- debugging-your-plugin -->
 # Debugging your plugin
 We recommend using the Visual Studio Code (VS Code) IDE for your plugin development. Included in the `.vscode` directory of this plugin is a `launch.json` config file, which allows you to attach a debugger to the node process when running your commands.

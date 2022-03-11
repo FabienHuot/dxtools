@@ -1,3 +1,10 @@
+/*
+ * Copyright (c) 2020, salesforce.com, inc.
+ * All rights reserved.
+ * Licensed under the BSD 3-Clause license.
+ * For full license text, see LICENSE.txt file in the repo root or https://opensource.org/licenses/BSD-3-Clause
+ */
+import * as os from 'os';
 import { flags, SfdxCommand } from '@salesforce/command';
 import { Messages, SfdxError } from '@salesforce/core';
 import { AnyJson } from '@salesforce/ts-types';
@@ -10,25 +17,22 @@ Messages.importMessagesDirectory(__dirname);
 const messages = Messages.loadMessages('dxtools', 'org');
 
 export default class Org extends SfdxCommand {
-
   public static description = messages.getMessage('commandDescription');
 
-  public static examples = [
-  `$ sfdx hello:org --targetusername myOrg@example.com --targetdevhubusername devhub@org.com
-  Hello world! This is org: MyOrg and I will be around until Tue Mar 20 2018!
-  My hub org id is: 00Dxx000000001234
-  `,
-  `$ sfdx hello:org --name myname --targetusername myOrg@example.com
-  Hello myname! This is org: MyOrg and I will be around until Tue Mar 20 2018!
-  `
-  ];
+  public static examples = messages.getMessage('examples').split(os.EOL);
 
-  public static args = [{name: 'file'}];
+  public static args = [{ name: 'file' }];
 
   protected static flagsConfig = {
     // flag with a value (-n, --name=VALUE)
-    name: flags.string({char: 'n', description: messages.getMessage('nameFlagDescription')}),
-    force: flags.boolean({char: 'f', description: messages.getMessage('forceFlagDescription')})
+    name: flags.string({
+      char: 'n',
+      description: messages.getMessage('nameFlagDescription'),
+    }),
+    force: flags.boolean({
+      char: 'f',
+      description: messages.getMessage('forceFlagDescription'),
+    }),
   };
 
   // Comment this out if your command does not require an org username
@@ -41,7 +45,7 @@ export default class Org extends SfdxCommand {
   protected static requiresProject = false;
 
   public async run(): Promise<AnyJson> {
-    const name = this.flags.name || 'world';
+    const name = (this.flags.name || 'world') as string;
 
     // this.org is guaranteed because requiresUsername=true, as opposed to supportsUsername
     const conn = this.org.getConnection();
@@ -80,7 +84,7 @@ export default class Org extends SfdxCommand {
     }
 
     if (this.flags.force && this.args.file) {
-      this.ux.log(`You input --force and a file: ${this.args.file}`);
+      this.ux.log(`You input --force and a file: ${this.args.file as string}`);
     }
 
     // Return an object to be displayed with --json
